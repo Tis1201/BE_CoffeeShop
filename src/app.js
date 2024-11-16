@@ -8,8 +8,14 @@ const path = require('path');
 const { specs, swaggerUi } = require('./docs/swagger');
 
 const app = express();
-
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173', // URL frontend của bạn
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Các phương thức HTTP được phép
+    allowedHeaders: ['Content-Type', 'Authorization'], // Các header được phép
+  };
+  
+  // Sử dụng CORS với tùy chọn
+  app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
